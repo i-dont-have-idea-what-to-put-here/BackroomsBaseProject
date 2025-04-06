@@ -15,12 +15,12 @@ jobs:
           blender-version: '4.4'
 
       - name: Godot Setup
-        uses: Vitorgus/Setup-Godot@v1.1.1
+        uses: SolarLabyrinth/Action-Setup-Godot@v2
         with:
-          godot-version: 3.5.1
-          mono: false
-          download-templates: true
-      
+          version: 3.5.1
+          csharp: false
+          name: godot
+
       - name: Build Godot (Debug)
         uses: yeslayla/build-godot-action@v1.4.1
         with:
