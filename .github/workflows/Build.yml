@@ -25,7 +25,7 @@ jobs:
         uses: yeslayla/build-godot-action@v1.4.1
         with:
           name: game-debug
-          preset: Linux/X11
+          preset: 'Windows Desktop'
           package: true
           debugMode: true
           projectDir: .
@@ -41,7 +41,7 @@ jobs:
         uses: yeslayla/build-godot-action@v1.4.1
         with:
           name: game-release
-          preset: Linux/X11
+          preset: 'Windows Desktop'
           package: true
           debugMode: false
           projectDir: .
