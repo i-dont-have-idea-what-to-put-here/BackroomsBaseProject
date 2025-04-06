@@ -51,6 +51,12 @@ jobs:
           mv ./templates/* $EXPORT_TEMPLATES_DIR
           ls -la $EXPORT_TEMPLATES_DIR
 
+      - name: Import Project Assets
+        shell: bash
+        run: |
+          godot --headless --editor --quit
+          echo "Project imported successfully"
+
       - name: Build Godot (Debug)
         shell: bash
         run: |
