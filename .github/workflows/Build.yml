@@ -1,0 +1,54 @@
+name: Build Godot Project
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Blender
+        uses: Moguri/setup-blender@v1
+        with:
+          blender-version: '4.4'
+
+      - name: Godot Setup
+        uses: lihop/godot-setup@v2.1.3
+        with:
+          version: 3.5.1-stable
+          bits: 64
+          export-templates: true
+
+      - name: Build Godot (Debug)
+        uses: yeslayla/build-godot-action@v1.4.1
+        with:
+          name: game-debug
+          preset: Linux/X11
+          package: true
+          debugMode: true
+          projectDir: .
+
+      - name: Upload Debug Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: game-debug
+          path: game-debug.zip
+          retention-days: 7
+
+      - name: Build Godot (Release)
+        uses: yeslayla/build-godot-action@v1.4.1
+        with:
+          name: game-release
+          preset: Linux/X11
+          package: true
+          debugMode: false
+          projectDir: .
+
+      - name: Upload Release Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: game-release
+          path: game-release.zip
+          retention-days: 7
