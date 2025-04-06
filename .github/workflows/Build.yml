@@ -54,14 +54,14 @@ jobs:
       - name: Import Project Assets
         shell: bash
         run: |
-          timeout 150 godot -e
+          timeout 150 godot --editor --path .
           echo "Project imported successfully"
 
       - name: Build Godot (Debug)
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
-          godot --headless --export-debug "Windows Desktop" build/Windows/debug/game.exe
+          godot --headless --path . --export-debug "Windows Desktop" build/Windows/debug/game.exe
           cd build/Windows/debug
           zip -r game-debug.zip ./*
           mv game-debug.zip $GITHUB_WORKSPACE/
@@ -77,7 +77,7 @@ jobs:
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
-          godot --headless --export "Windows Desktop" build/Windows/release/game.exe
+          godot --headless --path . --export "Windows Desktop" build/Windows/release/game.exe
           cd build/Windows/release
           zip -r game-release.zip ./*
           mv game-release.zip $GITHUB_WORKSPACE/
