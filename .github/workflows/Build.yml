@@ -54,7 +54,7 @@ jobs:
       - name: Import Project Assets
         shell: bash
         run: |
-          godot --headless --editor --quit
+          timeout 150 godot -e
           echo "Project imported successfully"
 
       - name: Build Godot (Debug)
